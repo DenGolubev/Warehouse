@@ -35,6 +35,9 @@ Public Class Запасы_класс
             SqlCom = New OleDb.OleDbCommand("alter table Запасы add [Дата] DATETIME NOT NULL", con) ' DATA - дата/время, нулевое значение разрешено
             SqlCom.ExecuteNonQuery()
 
+            SqlCom = New OleDb.OleDbCommand("alter table Запасы add [Номер Акта] TEXT NULL", con) 'TEXT - тесктовое, нулевое значение не разрешено
+            SqlCom.ExecuteNonQuery()
+
             SqlCom = New OleDb.OleDbCommand("alter table Запасы add [Наименование оборудования] TEXT NOT NULL", con) 'CHISLO - числовое, обязательное, по умолчанию 0
             SqlCom.ExecuteNonQuery()
 

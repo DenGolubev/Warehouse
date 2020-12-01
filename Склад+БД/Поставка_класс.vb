@@ -36,6 +36,9 @@ Public Class Поставка_класс
             SqlCom = New OleDb.OleDbCommand("alter table Поставка add [Дата] DATETIME NOT NULL", con) ' DATA - дата/время, нулевое значение разрешено
             SqlCom.ExecuteNonQuery()
 
+            SqlCom = New OleDb.OleDbCommand("alter table Поставка add [Номер Акта] TEXT NULL", con) 'TEXT - тесктовое, нулевое значение не разрешено
+            SqlCom.ExecuteNonQuery()
+
             SqlCom = New OleDb.OleDbCommand("alter table Поставка add [Наименование оборудования] TEXT NOT NULL", con) 'CHISLO - числовое, обязательное, по умолчанию 0
             SqlCom.ExecuteNonQuery()
 
@@ -108,4 +111,22 @@ Public Class Поставка_класс
         con.Close()
         Return dt
     End Function
+
+    Public Function Поиск_данных()
+        Dim i As Integer = 1
+        con = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & pathDB & ";Jet OLEDB:Database Password=" & passDB)
+        Dim fnd As String
+        fnd = Форма_поставка.TextBox3.Text
+        con.Open()
+        Dim dt As New DataTable()
+        Dim rs As New OleDb.OleDbDataAdapter("Select *, 'В Браке' from Брак as [Серийный номер]  WHERE [Серийный номер] = '" & fnd & "' UNION Select *, 'Выдано' from Выдача as [Серийный номер]  WHERE [Серийный номер] = '" & fnd & "' UNION Select *, 'На складе' from Запасы as [Серийный номер]  WHERE [Серийный номер] = '" & fnd & "' UNION Select *, 'Поставка' from Поставка as [Серийный номер]  WHERE [Серийный номер] = '" & fnd & "'UNION Select *, 'Списание' from Списание as [Серийный номер]  WHERE [Серийный номер] = '" & fnd & "'", con)
+        rs.Fill(dt)
+        Форма_поставка.DataGridView2.DataSource = dt
+        If dt.Rows.Count > 1 Then
+            Форма_поставка.TextBox3.Clear()
+        End If
+
+        Return con
+    End Function
+
 End Class

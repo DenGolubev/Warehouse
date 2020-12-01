@@ -98,10 +98,17 @@ Public Class Форма_главная
         Dim pathDB As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\" & "Склад" & ".mdb"
         Dim passDB As String = "" 'пароль базы данных
         con = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & pathDB & ";Jet OLEDB:Database Password=" & passDB)
-        Dim dt As New DataTable("Сотрудники")
         con.Open()
         Dim insCom As New OleDb.OleDbCommand("Select [Табельный номер] from Кладовщик", con)
         Label3.Text = insCom.ExecuteScalar
         con.Close()
+    End Sub
+
+    Private Sub БракToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles БракToolStripMenuItem.Click
+        Форма_брак.Show()
+    End Sub
+
+    Private Sub ВозвратToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ВозвратToolStripMenuItem.Click
+        Форма_возврат.Show()
     End Sub
 End Class

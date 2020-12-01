@@ -14,27 +14,17 @@ Public Class Форма_кладовщик
     Dim Запасы As New Запасы_класс
     Dim Кладовщик As New Кладовщики_класс
     Dim Брак As New Брак_класс
+    Dim Списание As New Списание_класс
     Private Sub Форма_кладовщик_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Me.Show()
-        Try
-            If IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\" & "Склад" & ".mdb") Then
-                ' Склад_БД.Коннект_on()
-                MsgBox("База данных успешно подключена")
-                Combo_box()
-
-            Else
-                Склад_БД.База_Данных()
-                PB()
-                Форма_сотрудники.Show()
-
-            End If
-
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        Finally
-            Склад_БД.Коннект_off()
-        End Try
+        If My.Computer.FileSystem.FileExists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\" & "Склад" & ".mdb") Then
+            My.Computer.FileSystem.CopyFile(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\" & "Склад" & ".mdb", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\Архив\" & "Склад" & ".mdb", FileIO.UIOption.AllDialogs, FileIO.UICancelOption.DoNothing)
+            MsgBox("База данных успешно подключена")
+            Combo_box()
+        Else
+            Склад_БД.База_Данных()
+            PB()
+            Форма_сотрудники.Show()
+        End If
 
         Label2.Text = Сейчас.Полная_дата
     End Sub
@@ -49,7 +39,7 @@ Public Class Форма_кладовщик
         rs.Fill(dt)
         ComboBox1.DataSource = dt
         ComboBox1.DisplayMember = ("Фамилия")
-        ComboBox1.ValueMember = "Табельный номер"
+        ComboBox1.ValueMember = ""
 
 
         'ComboBox2.Update()
@@ -70,45 +60,51 @@ Public Class Форма_кладовщик
         Try
             Dim wM = ProgressBar1.Maximum
             Call Номенклатура.Создание_таблицы_Номенклатура()
-            ProgressBar1.Value = wM * 0.074
+            ProgressBar1.Value = wM * 0.0625
             Application.DoEvents()
             Call Номенклатура.Добавляем_поля_Номенклатура()
-            ProgressBar1.Value = wM * 0.148
+            ProgressBar1.Value = wM * 0.125
             Application.DoEvents()
             Call Запасы.Создание_таблицы_Запасы()
-            ProgressBar1.Value = wM * 0.222
+            ProgressBar1.Value = wM * 0.188
             Application.DoEvents()
             Call Запасы.Добавляем_поля_Запасы()
-            ProgressBar1.Value = wM * 0.296
+            ProgressBar1.Value = wM * 0.25
             Application.DoEvents()
             Call Сотрудники.Создание_таблицы_Сотрудники()
-            ProgressBar1.Value = wM * 0.37
+            ProgressBar1.Value = wM * 0.313
             Application.DoEvents()
             Call Сотрудники.Добавляем_поля_Сотрудники()
-            ProgressBar1.Value = wM * 0.444
+            ProgressBar1.Value = wM * 0.375
             Application.DoEvents()
             Call Выдача.Создание_таблицы_Выдача()
-            ProgressBar1.Value = wM * 0.518
+            ProgressBar1.Value = wM * 0.438
             Application.DoEvents()
             Call Выдача.Добавляем_поля_Выдача()
-            ProgressBar1.Value = wM * 0.592
+            ProgressBar1.Value = wM * 0.5
             Application.DoEvents()
             Call Поставка.Создание_таблицы_Поставка()
-            ProgressBar1.Value = wM * 0.66
+            ProgressBar1.Value = wM * 0.562
             Application.DoEvents()
             Call Поставка.Добавляем_поля_Поставка()
-            ProgressBar1.Value = wM * 0.74
+            ProgressBar1.Value = wM * 0.625
             Application.DoEvents()
             Call Кладовщик.Создание_таблицы_Кладовщик()
-            ProgressBar1.Value = wM * 0.814
+            ProgressBar1.Value = wM * 0.688
             Application.DoEvents()
             Call Кладовщик.Добавляем_поля_Кладовщик()
-            ProgressBar1.Value = wM * 0.888
+            ProgressBar1.Value = wM * 0.75
             Application.DoEvents()
             Call Брак.Создание_таблицы_Брак()
-            ProgressBar1.Value = wM * 0.962
+            ProgressBar1.Value = wM * 0.813
             Application.DoEvents()
             Call Брак.Добавляем_поля_Брак()
+            ProgressBar1.Value = wM * 0.88
+            Application.DoEvents()
+            Call Списание.Создание_таблицы_Списание()
+            ProgressBar1.Value = wM * 0.938
+            Application.DoEvents()
+            Call Списание.Добавляем_поля_Списание()
             ProgressBar1.Value = wM
         Catch ex As Exception
             MsgBox(ex.Message)

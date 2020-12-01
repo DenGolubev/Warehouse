@@ -1,4 +1,6 @@
 ﻿Imports System.Data.OleDb
+Imports System.Globalization
+
 Public Class Форма_сотрудники
     Dim Сейчас As New Прочие_данные
     Dim Поставка As New Поставка_класс
@@ -36,6 +38,4 @@ Public Class Форма_сотрудники
         rs.Dispose()
         BD.Коннект_off()
     End Sub
-
-
 End Class

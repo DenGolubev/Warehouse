@@ -26,8 +26,10 @@ Partial Class Форма_главная
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.СкладToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ВыдачаToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ВозвратToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ПоставкаToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ЗапасыToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.БракToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ВыходToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.СотрудникиToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ПриемСотрудникаToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,12 +44,12 @@ Partial Class Форма_главная
         Me.СформироватьТаблицыToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.НоменклатураToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ДобавитьНоменклатуруToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ПоставкаBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ПоставкаBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.ПоставкаBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -63,7 +65,7 @@ Partial Class Форма_главная
         '
         'СкладToolStripMenuItem
         '
-        Me.СкладToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ВыдачаToolStripMenuItem, Me.ПоставкаToolStripMenuItem, Me.ЗапасыToolStripMenuItem, Me.ВыходToolStripMenuItem})
+        Me.СкладToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ПоставкаToolStripMenuItem, Me.ВыдачаToolStripMenuItem, Me.ВозвратToolStripMenuItem, Me.БракToolStripMenuItem, Me.ЗапасыToolStripMenuItem, Me.ВыходToolStripMenuItem})
         Me.СкладToolStripMenuItem.Name = "СкладToolStripMenuItem"
         Me.СкладToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.СкладToolStripMenuItem.Text = "Склад"
@@ -71,25 +73,37 @@ Partial Class Форма_главная
         'ВыдачаToolStripMenuItem
         '
         Me.ВыдачаToolStripMenuItem.Name = "ВыдачаToolStripMenuItem"
-        Me.ВыдачаToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ВыдачаToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ВыдачаToolStripMenuItem.Text = "Выдача"
+        '
+        'ВозвратToolStripMenuItem
+        '
+        Me.ВозвратToolStripMenuItem.Name = "ВозвратToolStripMenuItem"
+        Me.ВозвратToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ВозвратToolStripMenuItem.Text = "Возврат"
         '
         'ПоставкаToolStripMenuItem
         '
         Me.ПоставкаToolStripMenuItem.Name = "ПоставкаToolStripMenuItem"
-        Me.ПоставкаToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ПоставкаToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ПоставкаToolStripMenuItem.Text = "Поставка"
         '
         'ЗапасыToolStripMenuItem
         '
         Me.ЗапасыToolStripMenuItem.Name = "ЗапасыToolStripMenuItem"
-        Me.ЗапасыToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ЗапасыToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ЗапасыToolStripMenuItem.Text = "Запасы"
+        '
+        'БракToolStripMenuItem
+        '
+        Me.БракToolStripMenuItem.Name = "БракToolStripMenuItem"
+        Me.БракToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.БракToolStripMenuItem.Text = "Брак"
         '
         'ВыходToolStripMenuItem
         '
         Me.ВыходToolStripMenuItem.Name = "ВыходToolStripMenuItem"
-        Me.ВыходToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ВыходToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ВыходToolStripMenuItem.Text = "Выход"
         '
         'СотрудникиToolStripMenuItem
@@ -174,10 +188,6 @@ Partial Class Форма_главная
         Me.ДобавитьНоменклатуруToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
         Me.ДобавитьНоменклатуруToolStripMenuItem.Text = "Добавить номенклатуру"
         '
-        'ПоставкаBindingSource
-        '
-        Me.ПоставкаBindingSource.DataMember = "Поставка"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -214,6 +224,10 @@ Partial Class Форма_главная
         Me.Label3.Size = New System.Drawing.Size(46, 16)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "Label3"
+        '
+        'ПоставкаBindingSource
+        '
+        Me.ПоставкаBindingSource.DataMember = "Поставка"
         '
         'Форма_главная
         '
@@ -264,4 +278,6 @@ Partial Class Форма_главная
     Friend WithEvents СформироватьТаблицыToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents БракToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ВозвратToolStripMenuItem As ToolStripMenuItem
 End Class
